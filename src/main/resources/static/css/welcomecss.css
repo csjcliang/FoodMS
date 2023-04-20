@@ -1,0 +1,132 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+    font-family: "LTCXHJT";
+    src:url("/fonts/FZLTCXHJW.TTF");
+}
+@font-face {
+    font-family: "LTHJT";
+    src:url("/fonts/FZLTHPro_GB18030.otf");
+}
+.navigation /*导航栏*/{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height:70px;
+    width:100%;
+    background: rgb(50, 50, 50);
+}
+
+#main_title{
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: rgba(197, 197, 197, 0.82);
+    margin-left:15px ;
+    margin-top: 16px;
+}
+.nav {
+    list-style-type: none;
+    margin-top: -48px;
+}
+
+.navigation li {
+    float:right;
+    margin-right:2%;  /*两个li之间的距离*/
+}
+#log_out, #account{
+    color: #c1cbc8;
+    font-size: 16px;
+    font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, "sans-serif";
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s all;
+    -webkit-transition: 0.3s all;
+    -o-transition: 0.3s all;
+    -moz-transition: 0.3s all;
+}
+#account_img{
+    margin-top: -3px;
+    margin-right: -20px;
+}
+#log_out:hover {
+    color: #ffffff;
+}
+#welcome_choose{
+    position: relative;
+    top:20px;
+}
+#welcome_title{
+    text-align: center;
+    font-size: 35px;
+    letter-spacing: 1px;
+    font-family: LTHJT;
+    color: #444853;
+    margin-top: 80px;
+    margin-bottom: 10px;
+}
+hr{
+    width: 200px;
+    height: 8px;
+    border: none;
+    background-color: #5175ff;
+}
+h2{
+    font-family: LTCXHJT;
+    font-size: 18px;
+    color: #9e9d9a;
+}
+#choose_page{
+    text-align: center;
+}
+#choose_item{
+    margin: auto;
+    margin-top: 80px;
+    clear:both;
+}
+#choose_material,#choose_additive,#choose_pack{
+    width: 250px;
+    height: 250px;
+    display: inline-block;
+    margin:20px;
+    padding: 30px;
+    vertical-align: bottom;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+}
+
+#choose_material:hover,#choose_additive:hover,#choose_pack:hover{
+    cursor: pointer;
+    position: relative;
+    background: #ededed;
+}
+
+#choose_material:hover .item,#choose_additive:hover .item,#choose_pack:hover .item{
+    display: inline-block;
+    -webkit-filter: drop-shadow(3px 3px 2px #72716d);
+    filter: drop-shadow(3px 3px 2px #72716d);
+}
+#choose_material:hover a,#choose_additive:hover a,#choose_pack:hover a{
+    display: inline-block;
+    -webkit-filter: drop-shadow(1px 1px 1px #72716d);
+    filter: drop-shadow(1px 1px 1px #72716d);
+}
+a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #444853;
+    letter-spacing: 1px;
+    font-family: LTHJT;
+}
+p{
+    font-family: LTCXHJT;
+    font-size: 15px;
+    color: #8a898b;
+    letter-spacing: 1px;
+    line-height: 150%;
+    margin-top: 10px;
+}

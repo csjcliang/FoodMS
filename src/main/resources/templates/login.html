@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>LoginPage</title>
+    <link href="css/logincss.css" rel="stylesheet" type="text/css">
+    <link href="images/favicon.ico" rel="shortcut icon">
+    <script type="text/javascript" src="/js/login.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+<div id="login_contents">
+    <div id="login_table">
+        <h1>食品生产质量管理系统</h1>
+        <div id="login_option">
+            <div id="input_and_img">
+                <img class="user" src="images/user.png" alt="user_img" width="35" height="35">
+                <input id="username" type="text" name="username" placeholder="用户名"/>
+                <br/>
+                <img class="password" src="images/password.png" alt="user_password" width="35" height="35">
+                <input id="password" type="password" name="password" placeholder="密码"/>
+                <p id="wrong_login">&nbsp;</p>
+            </div>
+            <input id="login_submit" type="button" name="submit" value="登录" onclick="check_user();"/>
+            <br/>
+            <a href="register"><input id="register" type="button" name="register" value="注册"/></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

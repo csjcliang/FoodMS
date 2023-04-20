@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>WelcomePage</title>
+    <link href="css/welcomecss.css" rel="stylesheet" type="text/css">
+    <link href="images/favicon.ico" rel="shortcut icon">
+    <script type="text/javascript" src="/js/welcome.js"></script>
+</head>
+<body>
+    <div id="welcome_contents">
+        <div class="navigation">
+            <h1 id="main_title">食品质量管理系统</h1>
+            <ul class="nav">
+                <li><a id="log_out" href="javascript:void(0);" onclick="log_out();">退出登录</a></li>
+                <li><a id="account" th:text="${session.tname}"></a></li>
+                <li><img id="account_img" src="images/account.png" alt="account_img" width="30" height="30"></li>
+            </ul>
+        </div>
+        <br/>
+        <div id="welcome_choose">
+            <h1 id="welcome_title">欢迎进入食品质量管理系统</h1>
+            <hr>
+            <div id="choose_page">
+                <h2>请选择要进入的页面</h2>
+                <div id="choose_item">
+                    <div id="choose_material" onclick="window.location.href='/material_register'">
+                        <img class="item" src="images/material.png" alt="material_img" width="100" height="100">
+                        <br/>
+                        <a href="material_register" class="choose_button">原料质量登记</a>
+                        <p>用于原料采购员工对采购的原料进行质量检测，并对检测进行质量记录，包括原料名称、原料检测结果、是否达标等信息</p>
+                    </div>
+                    <div id="choose_additive" onclick="window.location.href='/additive_register'">
+                        <img class="item" src="images/additive.png" alt="additive_img" width="100" height="100">
+                        <br/>
+                        <a href="additive_register" class="choose_button">添加剂质量登记</a>
+                        <p>用于食品加工员工对食品添加剂进行质量检测，并对检测进行质量记录，包括添加剂名称、添加剂检测结果、是否达标等信息</p>
+                    </div>
+                    <div id="choose_pack" onclick="window.location.href='/pack_register'">
+                        <img class="item" src="images/pack.png" alt="pack_img" width="100" height="100">
+                        <br/>
+                        <a href="pack_register" class="choose_button">包装质量登记</a>
+                        <p>用于包装运输员工对使用的食品包装进行质量检测，并对检测进行质量记录，包括包装名称、包装检测结果、是否达标等信息</p>
+                    </div>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

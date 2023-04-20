@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>原料质量登记</title>
+    <link href="images/favicon.ico" rel="shortcut icon">
+    <link href="css/materialcss.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/material_register.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+<div id="material_contents">
+    <div class="navigation">
+        <h1 id="main_title">食品质量管理系统</h1>
+        <ul class="nav">
+            <li><a id="log_out" href="javascript:void(0);" onclick="log_out();">退出登录</a></li>
+            <li><a id="idid" th:text="${session.tid}" style="display: none"></a></li>
+            <li><a id="account" th:text="${session.tname}"></a></li>
+            <li><img id="account_img" src="images/account.png" alt="account_img" width="30" height="30"></li>
+            <li><a id="to_pack" href="pack_register">包装质量登记</a></li>
+            <li><a id="to_additive" href="additive_register">添加剂质量登记</a></li>
+            <li><a id="to_material" href="material_register">原料质量登记</a></li>
+        </ul>
+    </div>
+    <br/>
+    <div id="material_body">
+        <div id="mt_head">
+            <h2 id="subtitle">原料质量登记</h2>
+            <p>该面板用于登记原料质量，包括原料名、原料检测结果、是否达标、登记员工以及登记时间等信息</p>
+        </div>
+        <div id="material_operation">
+            <div id="add_mt_div">
+                <img class="item" src="images/add.png" alt="material_img">
+                <h4>增加质量记录</h4>
+                <div id="add_mt">
+                    <h5>请填写增加记录的信息</h5>
+                    <input id="add_mt_name" type="text" name="type_mt_name" placeholder="请输入原料名称"/>
+                    <input id="add_mt_check" type="text" name="type_mt_check"
+                           placeholder="请输入检查结果"/>
+                    <select id="select_mt_qualified" name="select_mt_qualified">
+                        <option value="">请选择是否达标</option>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>
+                    <br/>
+                    <input id="mt_add_submit" type="button" name="mt_add_submit" value="增加记录" onclick="add_tips()"/>
+                </div>
+            </div>
+
+            <div id="delete_mt_div">
+                <img class="item" src="images/delete.png" alt="material_img">
+                <h4>删除质量记录</h4>
+                <div id="delete_mt">
+                    <h5>请选择需要删除记录的索引</h5>
+                    <select name="select_mt_index" id="select_mt_index" onchange="select_mt();">
+                        <option selected="selected" value="">请选择</option>
+                        <option value="mt_id">序号</option>
+                        <option value="mt_name">原料名称</option>
+                        <option value="mt_staff">登记人</option>
+                    </select>
+                    <input type="text" name="mt_delete1" id="mt_delete1" style="display:none;"
+                           placeholder="请输入序号"/>
+                    <input type="text" name="mt_delete2" id="mt_delete2" style="display:none;"
+                           placeholder="请输入原料名称"/>
+                    <input type="text" name="mt_delete3" id="mt_delete3" style="display:none;"
+                           placeholder="请输入登记人"/>
+                </div>
+                <input id="mt_delete_submit" type="button" name="mt_delete_submit" value="删除记录" onclick="delete_tips();"/>
+            </div>
+
+            <div id="update_mt_div">
+                <img class="item" src="images/update.png" alt="material_img">
+                <h4>修改质量记录</h4>
+                <div id="update_mt">
+                    <h5 id="please_input">请输入需要修改记录的序号</h5>
+                    <input type="text" name="update_mt_id" id="update_mt_id" placeholder="请输入序号"/>
+                    <input id="mt_update_query" type="button" name="mt_update_query" value="查询"
+                           onclick="check_tips();"/>
+                    <div id="update_contents">
+                        <h5 id="update_show_id" style="display: none"></h5>
+                        <input type="text" name="get_mt_id" id="get_mt_id" style="display: none"
+                               placeholder="原料序号"/>
+                        <input type="text" name="update_mt_name" id="update_mt_name"
+                               style="display: none"
+                               placeholder="原料名称"/>
+                        <input type="text" name="update_mt_check" id="update_mt_check"
+                               style="display: none"
+                               placeholder="检测结果"/>
+                        <input type="text" name="update_mt_qualified"
+                               id="update_mt_qualified"
+                               style="display: none"
+                               placeholder="是否达标"/>
+                        <input type="text" name="update_mt_staff" id="update_mt_staff"
+                               style="display: none"
+                               placeholder="登记员工"/>
+                    </div>
+                </div>
+                <input id="mt_update_submit" type="button" name="mt_update_submit" value="修改记录" style="display: none"
+                       onclick="update_tips();"/>
+            </div>
+
+            <div id="query_mt_div">
+                <img class="item" src="images/query.png" alt="material_img">
+                <h4>查询质量记录</h4>
+                <div id="query_mt">
+                    <h5>请选择需要查询记录的索引</h5>
+                    <select name="select_mt_index2" id="select_mt_index2" onchange="select_mt2();">
+                        <option selected="selected" value="">请选择</option>
+                        <option value="mt_id2">序号</option>
+                        <option value="mt_name2">原料名称</option>
+                        <option value="mt_qualified2">是否达标</option>
+                        <option value="mt_staff2">登记人</option>
+                    </select>
+                    <input type="text" name="mt_query1" id="mt_query1" style="display:none;"
+                           placeholder="请输入序号"/>
+                    <input type="text" name="mt_query2" id="mt_query2" style="display:none;"
+                           placeholder="请输入原料名称"/>
+                    <select id="mt_query3" name="mt_query3" style="display: none">
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>
+                    <input type="text" name="mt_query4" id="mt_query4" style="display:none;"
+                           placeholder="请输入登记人"/>
+                </div>
+                <input id="mt_query_submit" type="button" name="mt_query_submit" value="查询记录" onclick="query_tips();"/>
+            </div>
+
+            <div id="show_mt_div">
+                <img class="item" src="images/showall.png" alt="material_img">
+                <h4>显示/刷新质量记录</h4>
+                <h5>显示所有原料质量记录</h5>
+                <form name="material_showall_form" action="/mt_showall" method="post">
+                    <input id="mt_showall_submit" type="submit" name="mt_showall_submit" value="显示全部记录(刷新)"/>
+                </form>
+            </div>
+        </div>
+        <div id="material_table">
+            <table id="show_material" align="center">
+                <tr>
+                    <th>序号</th>
+                    <th>原料名称</th>
+                    <th>检测结果</th>
+                    <th>是否达标</th>
+                    <th>登记人</th>
+                    <th>登记时间</th>
+                </tr>
+                <tr th:each="all_material1,all_material1Stat:${session.all_material}" th:class="${all_material1Stat.even}?'even'">
+                    <td id="table_id" th:text="${all_material1.mt_id}"></td>
+                    <td th:text="${all_material1.mt_name}"></td>
+                    <td th:text="${all_material1.mt_check}"></td>
+                    <td th:text="${all_material1.mt_qualified}"></td>
+                    <td th:text="${all_material1.mt_staff}"></td>
+                    <td th:text="${all_material1.datetime}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>包装质量登记</title>
+    <link href="images/favicon.ico" rel="shortcut icon">
+    <link href="css/packcss.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/pack_register.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+<div id="pack_contents">
+    <div class="navigation">
+        <h1 id="main_title">食品质量管理系统</h1>
+        <ul class="nav">
+            <li><a id="log_out" href="javascript:void(0);" onclick="log_out();">退出登录</a></li>
+            <li><a id="idid" th:text="${session.tid}" style="display: none"></a></li>
+            <li><a id="account" th:text="${session.tname}"></a></li>
+            <li><img id="account_img" src="images/account.png" alt="account_img" width="30" height="30"></li>
+            <li><a id="to_pack" href="pack_register">包装质量登记</a></li>
+            <li><a id="to_additive" href="additive_register">添加剂质量登记</a></li>
+            <li><a id="to_material" href="material_register">原料质量登记</a></li>
+        </ul>
+    </div>
+    <br/>
+    <div id="pack_body">
+        <div id="pk_head">
+            <h2 id="subtitle">包装质量登记</h2>
+            <p>该面板用于登记包装质量，包括包装名、包装检测结果、是否达标、登记员工以及登记时间等信息</p>
+        </div>
+        <div id="pack_operation">
+            <div id="add_pk_div">
+                <img class="item" src="images/add3.png" alt="pack_img">
+                <h4>增加质量记录</h4>
+                <div id="add_pk">
+                    <h5>请填写增加记录的信息</h5>
+                    <input id="add_pk_name" type="text" name="type_pk_name" placeholder="请输入包装名称"/>
+                    <input id="add_pk_check" type="text" name="type_pk_check"
+                           placeholder="请输入检查结果"/>
+                    <select id="select_pk_qualified" name="select_pk_qualified">
+                        <option value="">请选择是否达标</option>
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>
+                    <br/>
+                    <input id="pk_add_submit" type="button" name="pk_add_submit" value="增加记录" onclick="add_tips()"/>
+                </div>
+            </div>
+
+            <div id="delete_pk_div">
+                <img class="item" src="images/delete3.png" alt="pack_img">
+                <h4>删除质量记录</h4>
+                <div id="delete_pk">
+                    <h5>请选择需要删除记录的索引</h5>
+                    <select name="select_pk_index" id="select_pk_index" onchange="select_pk();">
+                        <option selected="selected" value="">请选择</option>
+                        <option value="pk_id">序号</option>
+                        <option value="pk_name">包装名称</option>
+                        <option value="pk_staff">登记人</option>
+                    </select>
+                    <input type="text" name="pk_delete1" id="pk_delete1" style="display:none;"
+                           placeholder="请输入序号"/>
+                    <input type="text" name="pk_delete2" id="pk_delete2" style="display:none;"
+                           placeholder="请输入包装名称"/>
+                    <input type="text" name="pk_delete3" id="pk_delete3" style="display:none;"
+                           placeholder="请输入登记人"/>
+                </div>
+                <input id="pk_delete_submit" type="button" name="pk_delete_submit" value="删除记录" onclick="delete_tips();"/>
+            </div>
+
+            <div id="update_pk_div">
+                <img class="item" src="images/update3.png" alt="pack_img">
+                <h4>修改质量记录</h4>
+                <div id="update_pk">
+                    <h5 id="please_input">请输入需要修改记录的序号</h5>
+                    <input type="text" name="update_pk_id" id="update_pk_id" placeholder="请输入序号"/>
+                    <input id="pk_update_query" type="button" name="pk_update_query" value="查询"
+                           onclick="check_tips();"/>
+                    <div id="update_contents">
+                        <h5 id="update_show_id" style="display: none"></h5>
+                        <input type="text" name="get_pk_id" id="get_pk_id" style="display: none"
+                               placeholder="包装序号"/>
+                        <input type="text" name="update_pk_name" id="update_pk_name"
+                               style="display: none"
+                               placeholder="包装名称"/>
+                        <input type="text" name="update_pk_check" id="update_pk_check"
+                               style="display: none"
+                               placeholder="检测结果"/>
+                        <input type="text" name="update_pk_qualified"
+                               id="update_pk_qualified"
+                               style="display: none"
+                               placeholder="是否达标"/>
+                        <input type="text" name="update_pk_staff" id="update_pk_staff"
+                               style="display: none"
+                               placeholder="登记员工"/>
+                    </div>
+                </div>
+                <input id="pk_update_submit" type="button" name="pk_update_submit" value="修改记录" style="display: none"
+                       onclick="update_tips();"/>
+            </div>
+
+            <div id="query_pk_div">
+                <img class="item" src="images/query3.png" alt="pack_img">
+                <h4>查询质量记录</h4>
+                <div id="query_pk">
+                    <h5>请选择需要查询记录的索引</h5>
+                    <select name="select_pk_index2" id="select_pk_index2" onchange="select_pk2();">
+                        <option selected="selected" value="">请选择</option>
+                        <option value="pk_id2">序号</option>
+                        <option value="pk_name2">包装名称</option>
+                        <option value="pk_qualified2">是否达标</option>
+                        <option value="pk_staff2">登记人</option>
+                    </select>
+                    <input type="text" name="pk_query1" id="pk_query1" style="display:none;"
+                           placeholder="请输入序号"/>
+                    <input type="text" name="pk_query2" id="pk_query2" style="display:none;"
+                           placeholder="请输入包装名称"/>
+                    <select id="pk_query3" name="pk_query3" style="display: none">
+                        <option value="是">是</option>
+                        <option value="否">否</option>
+                    </select>
+                    <input type="text" name="pk_query4" id="pk_query4" style="display:none;"
+                           placeholder="请输入登记人"/>
+                </div>
+                <input id="pk_query_submit" type="button" name="pk_query_submit" value="查询记录" onclick="query_tips();"/>
+            </div>
+
+            <div id="show_pk_div">
+                <img class="item" src="images/showall3.png" alt="pack_img">
+                <h4>显示/刷新质量记录</h4>
+                <h5>显示所有包装质量记录</h5>
+                <form name="pack_showall_form" action="/pk_showall" method="post">
+                    <input id="pk_showall_submit" type="submit" name="pk_showall_submit" value="显示全部记录(刷新)"/>
+                </form>
+            </div>
+        </div>
+        <div id="pack_table">
+            <table id="show_pack" align="center">
+                <tr>
+                    <th>序号</th>
+                    <th>包装名称</th>
+                    <th>检测结果</th>
+                    <th>是否达标</th>
+                    <th>登记人</th>
+                    <th>登记时间</th>
+                </tr>
+                <tr th:each="all_pack1,all_pack1Stat:${session.all_pack}" th:class="${all_pack1Stat.even}?'even'">
+                    <td id="table_id" th:text="${all_pack1.pk_id}"></td>
+                    <td th:text="${all_pack1.pk_name}"></td>
+                    <td th:text="${all_pack1.pk_check}"></td>
+                    <td th:text="${all_pack1.pk_qualified}"></td>
+                    <td th:text="${all_pack1.pk_staff}"></td>
+                    <td th:text="${all_pack1.datetime}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>RegisterPage</title>
+    <link href="css/registercss.css" rel="stylesheet" type="text/css">
+    <link href="images/favicon.ico" rel="shortcut icon">
+    <script type="text/javascript" src="/js/register.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+<div id="register_contents">
+    <div id="register_table">
+        <h1>欢迎注册</h1>
+        <div id="register_option">
+            <div id="input_and_select">
+                <input id="re_username" type="text" name="re_username" placeholder="请输入用户名"/>
+                <br/>
+                <input id="re_password" type="password" name="re_password" placeholder="请输入密码"/>
+                <br/>
+                <input id="re_password2" type="password" name="re_password2" placeholder="请确认密码"/>
+                <br/>
+                <select id="select_identity" name="select_identity">
+                    <option value="">请选择身份</option>
+                    <option value="manager">管理人员</option>
+                    <option value="inspector">质检员</option>
+                    <option value="material registrar">原料采购员工</option>
+                    <option value="additive registrar">生产加工员工</option>
+                    <option value="pack registrar">包装运输员工</option>
+                </select>
+                <p id="wrong_register">&nbsp;</p>
+            </div>
+            <input id="register_submit" type="button" name="submit" value="提交" onclick="register_user();"/>
+            <a href="login"><input id="back_login" type="button" name="back" value="返回登录界面"/></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
